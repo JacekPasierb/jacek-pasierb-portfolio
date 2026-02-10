@@ -82,14 +82,21 @@ export function PortfolioTabs({
     return () => window.removeEventListener("resize", onResize);
   }, [activeId]);
 
+  const activeIndex = tabs.findIndex((t) => t.id === activeId);
+  const goPrev = () => {
+    if (activeIndex > 0) setActiveId(tabs[activeIndex - 1].id);
+  };
+  const goNext = () => {
+    if (activeIndex < tabs.length - 1) setActiveId(tabs[activeIndex + 1].id);
+  };
+
   const handleKeyDown = (e: React.KeyboardEvent<HTMLDivElement>) => {
-    const currentIdx = tabs.findIndex((t) => t.id === activeId);
-    if (e.key === "ArrowLeft" && currentIdx > 0) {
+    if (e.key === "ArrowLeft" && activeIndex > 0) {
       e.preventDefault();
-      setActiveId(tabs[currentIdx - 1].id);
-    } else if (e.key === "ArrowRight" && currentIdx < tabs.length - 1) {
+      setActiveId(tabs[activeIndex - 1].id);
+    } else if (e.key === "ArrowRight" && activeIndex < tabs.length - 1) {
       e.preventDefault();
-      setActiveId(tabs[currentIdx + 1].id);
+      setActiveId(tabs[activeIndex + 1].id);
     }
   };
 
@@ -100,36 +107,63 @@ export function PortfolioTabs({
       aria-label="Kategorie projektów"
       onKeyDown={handleKeyDown}
     >
-      <div ref={listRef} className={styles.tabList}>
-        {!reducedMotion && indicatorStyle && (
-          <div className={styles.indicatorWrap} aria-hidden>
+      <div className={styles.tabNav}>
+        <button
+          type="button"
+          className={styles.tabNavArrow}
+          onClick={goPrev}
+          disabled={activeIndex <= 0}
+          aria-label="Poprzednia kategoria"
+        >
+          <span aria-hidden>←</span>
+        </button>
+        <div className={styles.tabListWrap}>
+          <div ref={listRef} className={styles.tabList}>
+            {!reducedMotion && indicatorStyle && (
+              <div className={styles.indicatorWrap} aria-hidden>
+                <div
+                  className={styles.indicator}
+                  style={{
+                    left: indicatorStyle.left,
+                    width: indicatorStyle.width,
+                  }}
+                />
+              </div>
+            )}
             <div
-              className={styles.indicator}
-              style={{
-                left: indicatorStyle.left,
-                width: indicatorStyle.width,
-              }}
-            />
+              className={styles.tabListInner}
+              style={{"--active-index": activeIndex} as React.CSSProperties}
+            >
+              {tabs.map((tab, i) => (
+                <button
+                  key={tab.id}
+                  ref={(el) => {
+                    tabRefs.current[i] = el;
+                  }}
+                  type="button"
+                  role="tab"
+                  id={`tab-${tab.id}`}
+                  aria-selected={activeId === tab.id}
+                  aria-controls={`panel-${tab.id}`}
+                  tabIndex={activeId === tab.id ? 0 : -1}
+                  className={styles.tab}
+                  onClick={() => setActiveId(tab.id)}
+                >
+                  {tab.label}
+                </button>
+              ))}
+            </div>
           </div>
-        )}
-        {tabs.map((tab, i) => (
-          <button
-            key={tab.id}
-            ref={(el) => {
-              tabRefs.current[i] = el;
-            }}
-            type="button"
-            role="tab"
-            id={`tab-${tab.id}`}
-            aria-selected={activeId === tab.id}
-            aria-controls={`panel-${tab.id}`}
-            tabIndex={activeId === tab.id ? 0 : -1}
-            className={styles.tab}
-            onClick={() => setActiveId(tab.id)}
-          >
-            {tab.label}
-          </button>
-        ))}
+        </div>
+        <button
+          type="button"
+          className={styles.tabNavArrow}
+          onClick={goNext}
+          disabled={activeIndex >= tabs.length - 1}
+          aria-label="Następna kategoria"
+        >
+          <span aria-hidden>→</span>
+        </button>
       </div>
 
       {subtitle && <p className={styles.subtitle}>{subtitle}</p>}
