@@ -17,7 +17,9 @@ export interface UseInViewOptions {
  * Hook do wykrywania, czy element jest w viewport (IntersectionObserver).
  * Zwraca ref do podpięcia pod element oraz stan isInView.
  */
-export function useInView(options: UseInViewOptions = {}) {
+export function useInView<T extends HTMLElement = HTMLElement>(
+  options: UseInViewOptions = {}
+) {
   const {
     threshold = 0.05,
     rootMargin = "0px 0px -20px 0px",
@@ -25,7 +27,7 @@ export function useInView(options: UseInViewOptions = {}) {
     disabled = false,
   } = options;
 
-  const ref = useRef<HTMLElement>(null);
+  const ref = useRef<T>(null);
   const [isInView, setIsInView] = useState(false);
 
   useEffect(() => {

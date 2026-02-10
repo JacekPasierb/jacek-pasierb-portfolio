@@ -8,6 +8,7 @@ const typeLabels: Record<ProjectType, string> = {
   aplikacja: "Aplikacje",
   ecommerce: "E-commerce",
   saas: "SaaS",
+  szablon: "Szablony",
 };
 
 interface ProjectFiltersProps {

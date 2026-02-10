@@ -9,7 +9,7 @@ import {ExampleModal} from "./ExampleModal";
 import styles from "./ExamplesSection.module.css";
 
 export function ExamplesSection() {
-  const {ref, isInView} = useInView({
+  const {ref, isInView} = useInView<HTMLDivElement>({
     threshold: 0.08,
     rootMargin: "0px 0px -40px 0px",
     once: true,
@@ -17,7 +17,7 @@ export function ExamplesSection() {
   const reducedMotion = useReducedMotion();
   const [modalExample, setModalExample] = useState<ExampleItem | null>(null);
 
-  const examples = siteConfig.proof as ExampleItem[];
+  const examples: ExampleItem[] = [...siteConfig.proof];
 
   if (examples.length === 0) return null;
 
