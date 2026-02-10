@@ -49,6 +49,18 @@
   text-align: center;
 }
 
+/* Na mobile: zakładki nie ściskać – każda ma czytelną szerokość, lista przewija w poziomie */
+@media (max-width: 640px) {
+  .tabList {
+    scroll-padding-inline: var(--space-md);
+  }
+
+  .tab {
+    flex: 0 0 auto;
+    min-width: max-content;
+  }
+}
+
 .tab:hover {
   color: var(--color-text);
 }
