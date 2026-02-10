@@ -1,0 +1,165 @@
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(10, 10, 12, 0.85);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.inner {
+  max-width: var(--container-max);
+  margin: 0 auto;
+  padding: var(--space-md) var(--space-lg);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* Wordmark: tekst jako logo, mieniący się gradient */
+.logo {
+  display: inline-flex;
+  align-items: baseline;
+  font-family: var(--font-sans);
+  font-size: 1.0625rem;
+  line-height: var(--leading-tight);
+  letter-spacing: var(--tracking-tighter);
+  text-decoration: none;
+  position: relative;
+  background: linear-gradient(
+    90deg,
+    var(--color-text) 0%,
+    var(--color-text-muted) 22%,
+    var(--color-accent) 50%,
+    var(--color-text-muted) 78%,
+    var(--color-text) 100%
+  );
+  background-size: 200% 100%;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  animation: logoShimmer 4s ease-in-out infinite;
+}
+
+@keyframes logoShimmer {
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+/* Jedno podkreślenie pod całym logo (biały → niebieski) */
+.logo::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -2px;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    var(--color-text) 0%,
+    var(--color-text) 45%,
+    var(--color-accent) 55%,
+    var(--color-accent) 100%
+  );
+  opacity: 0.85;
+}
+
+.logoFirst {
+  font-weight: var(--font-weight-medium);
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+
+.logoLast {
+  font-weight: var(--font-weight-semibold);
+  margin-left: 0.2em;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .logo {
+    animation: none;
+    background: none;
+    background-clip: unset;
+    -webkit-text-fill-color: unset;
+    color: var(--color-text);
+  }
+  .logoFirst {
+    -webkit-text-fill-color: unset;
+    color: inherit;
+  }
+  .logoLast {
+    -webkit-text-fill-color: unset;
+    color: var(--color-accent);
+  }
+}
+
+.nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  gap: var(--space-sm);
+}
+
+.link,
+.linkActive {
+  position: relative;
+  display: inline-block;
+  padding: var(--space-sm) var(--space-md);
+  color: var(--color-text-muted);
+  text-decoration: none;
+  font-size: var(--text-small);
+  font-weight: var(--font-weight-medium);
+  letter-spacing: var(--tracking-tight-section);
+  border-radius: var(--radius-sm);
+  transition: color var(--transition-base),
+    background-color var(--transition-base);
+}
+
+.link::after {
+  content: "";
+  position: absolute;
+  left: var(--space-md);
+  right: var(--space-md);
+  bottom: var(--space-xs);
+  height: 2px;
+  background: var(--color-accent);
+  border-radius: 1px;
+  transform: scaleX(0);
+  transform-origin: center;
+  transition: transform var(--transition-base);
+}
+
+.link:hover {
+  color: var(--color-text);
+}
+
+.link:hover::after {
+  transform: scaleX(1);
+}
+
+.linkActive {
+  color: var(--color-accent);
+}
+
+.linkActive::after {
+  transform: scaleX(1);
+}
+
+.linkActive:hover {
+  color: var(--color-accent);
+}
+
+@media (max-width: 768px) {
+  .nav {
+    display: none;
+  }
+}

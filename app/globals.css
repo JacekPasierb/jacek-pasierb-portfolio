@@ -1,0 +1,217 @@
+/* ===== CSS Variables ===== */
+:root {
+  --color-bg: #0a0a0c;
+  --color-bg-elevated: #121216;
+  --color-surface: #1a1a1f;
+  /* Text hierarchy: primary (nagłówki, treść) → muted (opisy, czytelny szary) → muted-subtle (meta, etykiety) */
+  --color-text: #f1f3f5;
+  --color-text-muted: #c7ccd1;
+  --color-text-muted-subtle: #9aa0a6;
+  --color-accent: #3b82f6;
+  --color-accent-hover: #60a5fa;
+  --color-accent-glow: rgba(59, 130, 246, 0.35);
+  /* Section divider accent variants */
+  --divider-accent-blue: #3b82f6;
+  --divider-glow-blue: rgba(59, 130, 246, 0.25);
+  --divider-accent-violet: #8b5cf6;
+  --divider-glow-violet: rgba(139, 92, 246, 0.25);
+  --divider-accent-green: #22c55e;
+  --divider-glow-green: rgba(34, 197, 94, 0.25);
+  --font-sans: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    sans-serif;
+  --font-mono: ui-monospace, "Cascadia Code", monospace;
+  --space-xs: 0.25rem;
+  --space-sm: 0.5rem;
+  --space-md: 1rem;
+  --space-lg: 1.5rem;
+  --space-xl: 2rem;
+  --space-2xl: 3rem;
+  --space-3xl: 4rem;
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 16px;
+  --transition-fast: 150ms ease;
+  --transition-base: 250ms ease;
+  --transition-slow: 400ms ease;
+  --ease-out: cubic-bezier(0.33, 1, 0.68, 1);
+  --animate-duration: 320ms;
+  --container-max: 72rem;
+
+  /* ===== Typography system ===== */
+  --text-h1: clamp(1.75rem, 4vw, 2.5rem);
+  --text-h2: clamp(1.5rem, 3.5vw, 2rem);
+  --text-h3: clamp(1.25rem, 3vw, 1.5rem);
+  --text-h4: 1.125rem;
+  --text-body: 1rem;
+  --text-small: 0.9375rem;
+  --text-xs: 0.8125rem;
+  --text-label: 0.75rem;
+
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+
+  --leading-tight: 1.15;
+  --leading-snug: 1.35;
+  --leading-body: 1.65;
+  --leading-relaxed: 1.7;
+
+  --tracking-tighter: -0.03em;
+  --tracking-tight: -0.02em;
+  --tracking-tight-section: -0.015em;
+  --tracking-normal: 0;
+  --tracking-wide-labels: 0.05em;
+
+  --content-max-width: 65ch;
+  --text-muted-opacity: 1;
+  --leading-description: 1.65;
+  --tracking-description: 0.01em;
+}
+
+/* Wyłączenie animacji gdy użytkownik preferuje reduced-motion (class dodawana z JS) */
+body.no-motion *,
+body.no-motion *::before,
+body.no-motion *::after {
+  animation-duration: 0.01ms !important;
+  animation-iteration-count: 1 !important;
+  transition-duration: 0.01ms !important;
+}
+
+/* ===== Reset & Base ===== */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+body {
+  margin: 0;
+  overflow-x: hidden;
+  font-family: var(--font-sans);
+  font-feature-settings: "kern" 1, "liga" 1, "cpsp" 0;
+  background: var(--color-bg);
+  color: var(--color-text);
+  line-height: var(--leading-body);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Prose / body text containers – readability */
+.prose {
+  max-width: var(--content-max-width);
+  line-height: var(--leading-body);
+}
+
+/* Descriptive text – czytelny szary (WCAG), bez dodatkowej opacity */
+.text-muted {
+  color: var(--color-text-muted);
+  opacity: var(--text-muted-opacity);
+  line-height: var(--leading-description);
+  letter-spacing: var(--tracking-description);
+}
+
+/* Najniższy poziom (footer meta, etykiety) */
+.text-muted-subtle {
+  color: var(--color-text-muted-subtle);
+  line-height: var(--leading-description);
+}
+
+/* Tabular numbers for stats and data */
+.tabular-nums {
+  font-variant-numeric: tabular-nums;
+}
+
+/* Small uppercase labels */
+.label-uppercase {
+  font-size: var(--text-label);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-wide-labels);
+  font-weight: var(--font-weight-medium);
+}
+
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+
+a {
+  color: var(--color-accent);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+/* Skip link – widoczny po focus */
+.skipLink {
+  position: absolute;
+  top: -100px;
+  left: var(--space-md);
+  padding: var(--space-md) var(--space-lg);
+  background: var(--color-accent);
+  color: #fff;
+  font-weight: 600;
+  border-radius: var(--radius-sm);
+  z-index: 200;
+  transition: top var(--transition-fast);
+}
+
+.skipLink:focus {
+  top: var(--space-md);
+  outline: 2px solid #fff;
+  outline-offset: 2px;
+}
+
+/* ===== Page transition (layout) ===== */
+.page-transition-enter {
+  opacity: 0;
+  filter: blur(6px);
+}
+
+.page-transition-enter-active {
+  opacity: 1;
+  filter: blur(0);
+  transition: opacity 200ms ease, filter 200ms ease;
+}
+
+.page-transition-exit {
+  opacity: 1;
+}
+
+.page-transition-exit-active {
+  opacity: 0;
+  filter: blur(6px);
+  transition: opacity 200ms ease, filter 200ms ease;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .page-transition-enter,
+  .page-transition-enter-active,
+  .page-transition-exit,
+  .page-transition-exit-active {
+    transition-duration: 0ms;
+  }
+}

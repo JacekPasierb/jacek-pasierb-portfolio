@@ -1,0 +1,106 @@
+.section {
+  padding: var(--space-3xl) var(--space-lg);
+  max-width: var(--container-max);
+  margin: 0 auto;
+}
+
+.sectionTitle {
+  margin: 0 0 var(--space-md);
+  text-align: center;
+}
+
+.intro {
+  text-align: center;
+  color: var(--color-text-muted);
+  opacity: var(--text-muted-opacity);
+  max-width: var(--content-max-width);
+  margin: 0 auto var(--space-2xl);
+  font-size: var(--text-small);
+  line-height: var(--leading-body);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-2xl);
+  align-items: start;
+}
+
+@media (max-width: 768px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+  .cardDesc {
+    opacity: 1;
+  }
+}
+
+.stickyCol {
+  position: sticky;
+  top: 6rem;
+}
+
+.stickyInner {
+  padding: var(--space-lg);
+  background: var(--color-surface);
+  border-radius: var(--radius-lg);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.stepTitle {
+  font-size: var(--text-h3);
+  font-weight: var(--font-weight-semibold);
+  margin: 0 0 var(--space-sm);
+}
+
+.stepDesc {
+  margin: 0;
+  color: var(--color-text-muted);
+  opacity: var(--text-muted-opacity);
+  font-size: var(--text-small);
+  line-height: var(--leading-body);
+}
+
+.scrollCol {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+}
+
+.card {
+  padding: var(--space-xl);
+  background: var(--color-bg-elevated);
+  border-radius: var(--radius-md);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  transition: border-color var(--transition-base),
+    background var(--transition-base);
+}
+
+.cardActive {
+  border-color: rgba(59, 130, 246, 0.4);
+  background: rgba(59, 130, 246, 0.06);
+}
+
+.cardNum {
+  display: block;
+  font-size: var(--text-label);
+  font-weight: var(--font-weight-semibold);
+  letter-spacing: var(--tracking-wide-labels);
+  color: var(--color-accent);
+  margin-bottom: var(--space-sm);
+  font-variant-numeric: tabular-nums;
+}
+
+.cardTitle {
+  font-size: var(--text-body);
+  font-weight: var(--font-weight-medium);
+  margin: 0 0 var(--space-xs);
+}
+
+.cardDesc {
+  margin: 0;
+  color: var(--color-text-muted);
+  /* opacity: var(--text-muted-opacity); */
+  font-size: var(--text-small);
+  line-height: var(--leading-body);
+}

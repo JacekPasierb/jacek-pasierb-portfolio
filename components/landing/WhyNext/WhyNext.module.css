@@ -1,0 +1,257 @@
+.section {
+  padding: var(--space-3xl) var(--space-lg);
+  max-width: var(--container-max);
+  margin: 0 auto;
+}
+
+.title {
+  font-size: clamp(1.5rem, 4vw, 2rem);
+  margin: 0 0 var(--space-md);
+  text-align: center;
+}
+
+.intro {
+  text-align: center;
+  color: var(--color-text-muted);
+  opacity: var(--text-muted-opacity);
+  max-width: var(--content-max-width);
+  margin: 0 auto var(--space-2xl);
+  font-size: var(--text-small);
+  line-height: var(--leading-body);
+}
+
+.visual {
+  margin: 0 auto var(--space-2xl);
+  max-width: 560px;
+}
+
+.visualImg {
+  width: 100%;
+  height: auto;
+  border-radius: var(--radius-lg);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+  box-sizing: border-box;
+}
+
+/* Intensywność tła dekoracyjnego (5–15%) */
+.cardLeft,
+.cardRight {
+  --card-bg-opacity: 0.08;
+  position: relative;
+  overflow: hidden;
+  padding: var(--space-xl);
+  border-radius: 0 var(--radius-lg) var(--radius-lg) 0;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-left: none;
+  width: 78%;
+  max-width: 52rem;
+  box-sizing: border-box;
+  opacity: 0;
+  transform: translateX(-24px);
+  transition: opacity var(--animate-duration) var(--ease-out),
+    transform var(--animate-duration) var(--ease-out);
+}
+
+/* Warstwa tła dekoracyjnego za treścią */
+.cardLeft::before,
+.cardRight::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  opacity: var(--card-bg-opacity);
+  transition: opacity 0.25s var(--ease-out);
+}
+
+.cardLeft:hover::before,
+.cardRight:hover::before {
+  opacity: calc(var(--card-bg-opacity) * 1.4);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cardLeft::before,
+  .cardRight::before {
+    transition: none;
+  }
+  .cardLeft:hover::before,
+  .cardRight:hover::before {
+    opacity: var(--card-bg-opacity);
+  }
+  .cardLeft[data-card-variant="szybkosc"]:hover::before,
+  .cardRight[data-card-variant="szybkosc"]:hover::before {
+    background-position: 0% 0%;
+  }
+}
+
+/* 1) Szybkość – kierunek, ruch: ukośne pasma światła */
+.cardLeft[data-card-variant="szybkosc"]::before,
+.cardRight[data-card-variant="szybkosc"]::before {
+  background: linear-gradient(
+    135deg,
+    transparent 0%,
+    var(--color-accent) 25%,
+    transparent 50%,
+    var(--color-accent) 75%,
+    transparent 100%
+  );
+  background-size: 200% 100%;
+  background-position: 0% 0%;
+  transition: opacity 0.25s var(--ease-out),
+    background-position 0.3s var(--ease-out);
+}
+
+.cardLeft[data-card-variant="szybkosc"]:hover::before,
+.cardRight[data-card-variant="szybkosc"]:hover::before {
+  background-position: 100% 0%;
+}
+
+/* 2) Widoczność – struktura, zasięg: delikatna siatka + glow */
+.cardLeft[data-card-variant="widocznosc"]::before,
+.cardRight[data-card-variant="widocznosc"]::before {
+  background: radial-gradient(
+      ellipse 80% 60% at 50% 50%,
+      var(--divider-glow-blue) 0%,
+      transparent 70%
+    ),
+    linear-gradient(0deg, rgba(255, 255, 255, 0.03) 0%, transparent 1px) 0 0 /
+      24px 24px,
+    linear-gradient(90deg, rgba(255, 255, 255, 0.03) 0%, transparent 1px) 0 0 /
+      24px 24px;
+}
+
+/* 3) Obraz – jakość, premium: gładki gradient radialny */
+.cardLeft[data-card-variant="obraz"]::before,
+.cardRight[data-card-variant="obraz"]::before {
+  background: radial-gradient(
+    ellipse 100% 80% at 70% 30%,
+    var(--color-accent) 0%,
+    transparent 55%
+  );
+}
+
+/* 4) Bez wtyczek – prostota: płaski gradient + dużo pustej przestrzeni */
+.cardLeft[data-card-variant="wtyczki"]::before,
+.cardRight[data-card-variant="wtyczki"]::before {
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.04) 0%,
+    transparent 40%,
+    transparent 60%,
+    rgba(255, 255, 255, 0.02) 100%
+  );
+}
+
+.cardRight {
+  transform: translateX(24px);
+}
+
+.cardLeft[data-revealed="true"],
+.cardRight[data-revealed="true"] {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.cardLeft {
+  background: var(--color-surface);
+  margin-right: auto;
+  margin-left: 0;
+  padding-left: max(
+    var(--space-xl),
+    calc(50vw - var(--container-max) / 2 + var(--space-lg))
+  );
+}
+
+.cardRight {
+  background: var(--color-bg-elevated);
+  margin-left: auto;
+  margin-right: 0;
+  border-radius: var(--radius-lg) 0 0 var(--radius-lg);
+  border-left: 1px solid rgba(255, 255, 255, 0.06);
+  border-right: none;
+  padding-right: max(
+    var(--space-xl),
+    calc(50vw - var(--container-max) / 2 + var(--space-lg))
+  );
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cardLeft,
+  .cardRight {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
+.cardInner {
+  position: relative;
+  z-index: 1;
+  max-width: 36rem;
+}
+
+.cardLeft .cardInner {
+  margin-right: auto;
+  margin-left: 0;
+}
+
+.cardRight .cardInner {
+  margin-left: auto;
+  margin-right: 0;
+  text-align: right;
+}
+
+.cardRight .cardDesc {
+  text-align: right;
+}
+
+.cardTitle {
+  font-size: 1.125rem;
+  margin: 0 0 var(--space-sm);
+}
+
+.cardDesc {
+  margin: 0;
+  color: var(--color-text-muted);
+  font-size: 0.9375rem;
+  line-height: 1.6;
+  max-width: 36rem;
+}
+
+.cardRight .cardDesc {
+  margin-left: auto;
+}
+
+@media (max-width: 768px) {
+  .cardLeft,
+  .cardRight {
+    width: 100%;
+    max-width: none;
+    border-radius: var(--radius-lg);
+    border-left: 1px solid rgba(255, 255, 255, 0.06);
+    border-right: 1px solid rgba(255, 255, 255, 0.06);
+    padding-left: var(--space-xl);
+    padding-right: var(--space-xl);
+  }
+  .cardLeft .cardInner,
+  .cardRight .cardInner {
+    margin-left: auto;
+    margin-right: auto;
+    text-align: left;
+  }
+  .cardRight .cardDesc {
+    text-align: left;
+    margin-left: 0;
+  }
+}

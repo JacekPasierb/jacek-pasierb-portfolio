@@ -1,0 +1,249 @@
+.hero {
+  position: relative;
+  min-height: 85vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-3xl) var(--space-lg);
+  overflow: hidden;
+}
+
+.wrapper {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  max-width: var(--container-max);
+  margin: 0 auto;
+  width: 100%;
+  text-align: center;
+}
+
+.heroBg {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  pointer-events: none;
+  will-change: transform;
+}
+
+/* Shimmer / iridescent – nad overlayem, żeby był widoczny */
+.heroShimmer {
+  --hero-shimmer-opacity: 0.18;
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+  background: radial-gradient(
+    ellipse 120% 80% at 50% 40%,
+    rgba(59, 130, 246, 0.12) 0%,
+    transparent 55%
+  );
+}
+
+.heroShimmer::before {
+  content: "";
+  position: absolute;
+  inset: -100%;
+  background: linear-gradient(
+    110deg,
+    transparent 0%,
+    rgba(59, 130, 246, var(--hero-shimmer-opacity)) 18%,
+    rgba(139, 92, 246, 0.12) 38%,
+    transparent 50%,
+    rgba(59, 130, 246, 0.14) 68%,
+    transparent 85%
+  );
+  background-size: 200% 200%;
+  animation: heroShimmerMove 18s ease-in-out infinite;
+}
+
+.heroShimmer[data-reduced-motion="true"]::before {
+  animation: none;
+  opacity: 0.5;
+}
+
+@keyframes heroShimmerMove {
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .heroShimmer::before {
+    animation: none;
+    opacity: 0.4;
+  }
+}
+
+body.no-motion .heroShimmer::before {
+  animation: none;
+  opacity: 0.4;
+}
+
+.heroOverlay {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(10, 10, 12, 0.75) 0%,
+    rgba(10, 10, 12, 0.5) 50%,
+    rgba(10, 10, 12, 0.85) 100%
+  );
+  pointer-events: none;
+}
+
+.content {
+  max-width: var(--content-max-width);
+}
+
+/* Hero text – animacja wejścia (fade + slide), stagger */
+.proofInitial,
+.proofVisible {
+  font-size: var(--text-small);
+  color: var(--color-accent);
+  margin: 0 0 var(--space-md);
+  font-weight: var(--font-weight-medium);
+  letter-spacing: var(--tracking-wide-labels);
+  text-transform: uppercase;
+}
+
+.proofInitial {
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity var(--animate-duration) var(--ease-out),
+    transform var(--animate-duration) var(--ease-out);
+}
+
+.proofVisible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.headlineInitial,
+.headlineVisible {
+  font-size: var(--text-h1);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--leading-tight);
+  margin: 0 0 var(--space-md);
+  letter-spacing: var(--tracking-tight);
+  font-feature-settings: "kern" 1, "liga" 1;
+}
+
+/* Pierwsza litera H1 – subtelny akcent (bez drop-cap) */
+.headlineInitial::first-letter,
+.headlineVisible::first-letter {
+  font-size: 1.15em;
+  font-weight: var(--font-weight-bold);
+  color: var(--color-accent);
+  margin-right: 0.02em;
+}
+
+/* Jedno słowo kluczowe – delikatny gradient (fallback: kolor akcentu) */
+.keyword {
+  font-weight: var(--font-weight-bold);
+  color: var(--color-accent);
+  background: linear-gradient(
+    135deg,
+    var(--color-text) 0%,
+    var(--color-accent) 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.headlineInitial {
+  opacity: 0;
+  transform: translateY(12px);
+  transition: opacity var(--animate-duration) var(--ease-out),
+    transform var(--animate-duration) var(--ease-out);
+  transition-delay: 80ms;
+}
+
+.headlineVisible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.subheadlineInitial,
+.subheadlineVisible {
+  font-size: 1.125rem;
+  color: var(--color-text-muted);
+  opacity: var(--text-muted-opacity);
+  margin: 0 0 var(--space-xl);
+  line-height: var(--leading-body);
+}
+
+.subheadlineInitial {
+  opacity: 0;
+  transform: translateY(12px);
+  transition: opacity var(--animate-duration) var(--ease-out),
+    transform var(--animate-duration) var(--ease-out);
+  transition-delay: 200ms;
+}
+
+.subheadlineVisible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .proofInitial,
+  .headlineInitial,
+  .subheadlineInitial {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
+.ctaInitial,
+.ctaVisible {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-md);
+  justify-content: center;
+  align-items: center;
+}
+
+.ctaInitial {
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity var(--animate-duration) var(--ease-out),
+    transform var(--animate-duration) var(--ease-out);
+  transition-delay: 300ms;
+}
+
+.ctaVisible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ctaInitial {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
+.secondary {
+  color: var(--color-text-muted);
+  font-weight: 500;
+  padding: var(--space-md) var(--space-lg);
+}
+
+.secondary:hover {
+  color: var(--color-accent);
+  text-decoration: none;
+}

@@ -1,0 +1,27 @@
+.highlight {
+  position: relative;
+  color: inherit;
+}
+
+.highlight::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0.1em;
+  width: 0;
+  height: 2px;
+  background: var(--color-accent);
+  border-radius: 1px;
+  transition: width var(--animate-duration) var(--ease-out);
+}
+
+.highlight.visible::after {
+  width: 100%;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .highlight::after {
+    width: 100%;
+    transition: none;
+  }
+}

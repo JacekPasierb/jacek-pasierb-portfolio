@@ -1,0 +1,1 @@
+export {AnimatedHighlight} from "./AnimatedHighlight";

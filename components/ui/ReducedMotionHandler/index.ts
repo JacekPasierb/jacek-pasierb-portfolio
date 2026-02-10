@@ -1,0 +1,1 @@
+export {ReducedMotionHandler} from "./ReducedMotionHandler";

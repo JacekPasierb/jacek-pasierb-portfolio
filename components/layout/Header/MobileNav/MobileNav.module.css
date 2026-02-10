@@ -1,0 +1,238 @@
+/* Trigger (hamburger) – only visible on mobile via parent */
+.trigger {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  padding: 0;
+  border: none;
+  background: transparent;
+  color: var(--color-text);
+  cursor: pointer;
+  border-radius: var(--radius-md);
+  transition: background var(--transition-fast), color var(--transition-fast);
+}
+
+.trigger:hover {
+  background: rgba(255, 255, 255, 0.06);
+  color: var(--color-accent);
+}
+
+.trigger:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+.triggerIcon {
+  display: block;
+  width: 1.25rem;
+  height: 1rem;
+  position: relative;
+}
+
+.triggerIcon span {
+  display: block;
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: currentColor;
+  border-radius: 1px;
+  transition: transform 0.25s var(--ease-out), opacity 0.2s;
+}
+
+.triggerIcon span:nth-child(1) {
+  top: 0;
+}
+
+.triggerIcon span:nth-child(2) {
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.triggerIcon span:nth-child(3) {
+  bottom: 0;
+}
+
+.trigger[aria-expanded="true"] .triggerIcon span:nth-child(1) {
+  transform: translateY(0.25rem) rotate(45deg);
+}
+
+.trigger[aria-expanded="true"] .triggerIcon span:nth-child(2) {
+  opacity: 0;
+}
+
+.trigger[aria-expanded="true"] .triggerIcon span:nth-child(3) {
+  transform: translateY(-0.25rem) rotate(-45deg);
+}
+
+/* Overlay */
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 150;
+  background: rgba(10, 10, 12, 0.7);
+  backdrop-filter: blur(8px);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.28s var(--ease-out), visibility 0.28s;
+}
+
+.overlay[data-open="true"] {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Center FAB + orbit – cały ekran, żeby środek (50%, 50%) był na środku strony */
+.orbitWrap {
+  position: fixed;
+  inset: 0;
+  z-index: 151;
+  pointer-events: none;
+}
+
+.orbitWrap > * {
+  pointer-events: auto;
+}
+
+.centerFab {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 3.5rem;
+  height: 3.5rem;
+  border: none;
+  border-radius: 50%;
+  background: var(--color-surface);
+  color: var(--color-text);
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(255, 255, 255, 0.06);
+  cursor: pointer;
+  transition: transform 0.22s var(--ease-out), box-shadow 0.22s var(--ease-out),
+    background 0.2s;
+}
+
+.centerFab:hover {
+  background: var(--color-bg-elevated);
+  box-shadow: 0 6px 28px rgba(0, 0, 0, 0.45), 0 0 0 1px rgba(59, 130, 246, 0.2);
+}
+
+.centerFab:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 3px;
+}
+
+.centerFabIcon {
+  width: 1.125rem;
+  height: 1.125rem;
+  position: relative;
+}
+
+.centerFabIcon::before,
+.centerFabIcon::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 100%;
+  height: 2px;
+  background: currentColor;
+  border-radius: 1px;
+  transform: translate(-50%, -50%) rotate(45deg);
+}
+
+.centerFabIcon::after {
+  transform: translate(-50%, -50%) rotate(-45deg);
+}
+
+/* Orbit items */
+.orbitItem {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  opacity: 0;
+  transform: translate(-50%, -50%) scale(0.6);
+  transition: opacity 0.28s var(--ease-out), transform 0.28s var(--ease-out);
+  transition-delay: 0ms;
+}
+
+.overlay[data-open="true"] .orbitItem {
+  opacity: 1;
+  transform: translate(-50%, -50%) translate(var(--orbit-x), var(--orbit-y))
+    scale(1);
+}
+
+.overlay[data-open="true"] .orbitItem:nth-child(2) {
+  transition-delay: 50ms;
+}
+
+.overlay[data-open="true"] .orbitItem:nth-child(3) {
+  transition-delay: 100ms;
+}
+
+.overlay[data-open="true"] .orbitItem:nth-child(4) {
+  transition-delay: 150ms;
+}
+
+.orbitLink {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 2.75rem;
+  min-height: 2.75rem;
+  padding: var(--space-sm) var(--space-md);
+  border-radius: var(--radius-lg);
+  background: var(--color-surface);
+  color: var(--color-text);
+  font-size: var(--text-body);
+  font-weight: var(--font-weight-medium);
+  text-decoration: none;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(255, 255, 255, 0.06);
+  white-space: nowrap;
+  transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+}
+
+.orbitLink:hover {
+  background: var(--color-bg-elevated);
+  color: var(--color-accent);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.35), 0 0 0 1px rgba(59, 130, 246, 0.25);
+}
+
+.orbitLink:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+.orbitLink[aria-current="page"] {
+  color: var(--color-accent);
+  box-shadow: 0 0 0 1px rgba(59, 130, 246, 0.35);
+}
+
+@media (min-width: 769px) {
+  .trigger {
+    display: none !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .trigger {
+    display: flex;
+  }
+}
+
+/* No motion: disable transitions */
+@media (prefers-reduced-motion: reduce) {
+  .overlay,
+  .orbitItem,
+  .centerFab,
+  .triggerIcon span {
+    transition-duration: 0.01ms !important;
+  }
+}
+
+body.no-motion .overlay,
+body.no-motion .orbitItem,
+body.no-motion .centerFab,
+body.no-motion .triggerIcon span {
+  transition-duration: 0.01ms !important;
+}
