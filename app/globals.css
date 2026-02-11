@@ -95,6 +95,29 @@ html {
   }
 }
 
+/* Przewijanie do sekcji (anchor): uwzględnij sticky header, żeby treść nie chowała się pod nim (szczególnie na mobile) */
+[id="dlaczego-nextjs"],
+[id="proces"],
+[id="faq"],
+[id="kontakt"],
+[id="portfolio"],
+[id="co-dostajesz"],
+[id="rezultaty"] {
+  scroll-margin-top: 5rem;
+}
+
+@media (max-width: 768px) {
+  [id="dlaczego-nextjs"],
+  [id="proces"],
+  [id="faq"],
+  [id="kontakt"],
+  [id="portfolio"],
+  [id="co-dostajesz"],
+  [id="rezultaty"] {
+    scroll-margin-top: 6rem;
+  }
+}
+
 body {
   margin: 0;
   overflow-x: hidden;
