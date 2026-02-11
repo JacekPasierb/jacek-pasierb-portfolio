@@ -64,7 +64,7 @@ export default async function ProjectPage({params}: Props) {
         <div className={styles.imageWrap}>
           <Image
             src={project.image}
-            alt=""
+            alt={`Projekt: ${project.title}`}
             width={800}
             height={450}
             className={styles.image}

@@ -44,7 +44,7 @@ export function Process() {
   return (
     <RevealSection id="proces">
       <StickyProcess
-        title="Jak pracuję"
+        title="Jak pracuję ?"
         intro="Prosty, przejrzysty proces od pomysłu do wdrożenia."
         steps={processSteps}
       />

@@ -1,3 +1,4 @@
+import Link from "next/link";
 import {RevealSection} from "@/components/ui/RevealSection";
 import {AnimatedHeading} from "@/components/ui/AnimatedHeading";
 import {siteConfig} from "@/data/site";
@@ -9,6 +10,9 @@ export function ContactSection() {
       <AnimatedHeading className={styles.title}>Kontakt</AnimatedHeading>
       <p className={styles.intro}>
         Napisz lub zadzwoń – odezwę się w ciągu 24h.
+      </p>
+      <p className={styles.faqLink}>
+        <Link href="/#faq">Masz pytania? Zobacz FAQ</Link>
       </p>
       <div className={styles.grid}>
         <a

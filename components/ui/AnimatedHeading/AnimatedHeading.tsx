@@ -6,7 +6,8 @@ import styles from "./AnimatedHeading.module.css";
 
 interface AnimatedHeadingProps
   extends React.HTMLAttributes<HTMLHeadingElement> {
-  as?: "h2" | "h3";
+  /** Domyślnie h2; na stronie Portfolio używaj h1 dla jednego H1 na stronę (SEO). */
+  as?: "h1" | "h2" | "h3";
   children: React.ReactNode;
 }
 

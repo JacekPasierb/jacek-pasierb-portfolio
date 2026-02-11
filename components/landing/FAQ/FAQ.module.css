@@ -100,3 +100,20 @@
 .answerOpen .answerInner {
   opacity: 1;
 }
+
+.contactLink {
+  text-align: center;
+  margin: var(--space-2xl) 0 0;
+  font-size: var(--text-small);
+}
+
+.contactLink a {
+  color: var(--color-accent);
+  text-decoration: none;
+  transition: color var(--transition-base);
+}
+
+.contactLink a:hover {
+  color: var(--color-accent-hover);
+  text-decoration: underline;
+}

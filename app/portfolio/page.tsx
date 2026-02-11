@@ -11,7 +11,9 @@ export default function PortfolioPage() {
   return (
     <div className={styles.page}>
       <RevealSection className={styles.hero} id="portfolio-hero">
-        <AnimatedHeading className={styles.title}>Portfolio</AnimatedHeading>
+        <AnimatedHeading as="h1" className={styles.title}>
+          Portfolio
+        </AnimatedHeading>
         <p className={styles.intro}>
           Projekty komercyjne, własne produkty i zasoby – realizacje z naciskiem
           na jakość i dostawę.

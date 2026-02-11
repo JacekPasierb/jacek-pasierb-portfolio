@@ -247,3 +247,38 @@ body.no-motion .heroShimmer::before {
   color: var(--color-accent);
   text-decoration: none;
 }
+
+.sectionLinks {
+  width: 100%;
+  margin: var(--space-xl) 0 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: var(--space-sm);
+  font-size: var(--text-small);
+}
+
+.sectionLinks a {
+  display: inline-block;
+  padding: var(--space-xs) var(--space-md);
+  color: var(--color-text-muted);
+  text-decoration: none;
+  border-radius: var(--radius-md);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.03);
+  transition: color var(--transition-base), border-color var(--transition-base),
+    background var(--transition-base);
+}
+
+.sectionLinks a:hover {
+  color: var(--color-accent);
+  border-color: rgba(59, 130, 246, 0.3);
+  background: rgba(59, 130, 246, 0.06);
+  text-decoration: none;
+}
+
+.sectionLinks span {
+  color: var(--color-text-muted);
+  opacity: 0.5;
+}

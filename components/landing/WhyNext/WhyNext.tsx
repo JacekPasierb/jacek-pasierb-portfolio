@@ -37,7 +37,7 @@ export function WhyNext() {
   return (
     <RevealSection id="dlaczego-nextjs" className={styles.section}>
       <AnimatedHeading className={styles.title}>
-        Dlaczego Next.js?
+        Dlaczego Next.js ?
       </AnimatedHeading>
       <p className={styles.intro}>
         Dzięki nowoczesnej technologii Twoja strona jest{" "}
@@ -47,7 +47,7 @@ export function WhyNext() {
       <div className={styles.visual}>
         <Image
           src={siteImages.whyNext}
-          alt=""
+          alt="Schemat: Next.js – szybkość, SEO i optymalizacja obrazów w jednym stacku"
           width={560}
           height={350}
           sizes="(max-width: 768px) 100vw, 560px"

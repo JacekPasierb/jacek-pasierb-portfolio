@@ -28,7 +28,7 @@ export function PortfolioSection() {
                 <div className={styles.imageWrap}>
                   <Image
                     src={project.image}
-                    alt=""
+                    alt={`Projekt: ${project.title}`}
                     width={400}
                     height={240}
                     className={styles.image}

@@ -96,6 +96,13 @@ export function Hero() {
             <Link href="/portfolio" className={styles.secondary}>
               Zobacz, co mogę dla Ciebie zrobić
             </Link>
+            <p className={styles.sectionLinks}>
+              <Link href="/#dlaczego-nextjs">Dlaczego Next ?</Link>
+              <span aria-hidden> · </span>
+              <Link href="/#proces">Jak pracuję ?</Link>
+              <span aria-hidden> · </span>
+              <Link href="/#faq">FAQ</Link>
+            </p>
           </div>
         </div>
       </div>

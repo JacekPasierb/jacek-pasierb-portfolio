@@ -19,8 +19,8 @@ export const siteConfig = {
     "Core Web Vitals",
     "pozycjonowanie stron",
   ],
-  /** TODO: Ścieżka do obrazka OG (np. /og.png) */
-  ogImage: "" as string | undefined,
+  /** Obraz OG/Twitter (1200×630). Fallback: hero; dla produkcji dodaj np. /og.png. */
+  ogImage: "/images/hero.png" as string | undefined,
   /** Email i telefon do sekcji kontakt */
   contact: {
     email: "jack_byk@o2.pl",

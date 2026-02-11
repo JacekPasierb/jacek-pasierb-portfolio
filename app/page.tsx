@@ -7,10 +7,12 @@ import {Results} from "@/components/landing/Results";
 import {FAQ} from "@/components/landing/FAQ";
 import {ContactSection} from "@/components/landing/ContactSection";
 import {SectionDivider} from "@/components/ui/SectionDivider";
+import {FaqJsonLd} from "@/components/seo/FaqJsonLd";
 
 export default function HomePage() {
   return (
     <>
+      <FaqJsonLd />
       <Hero />
       <SectionDivider variant="glow" intensity="normal" withEdgeHighlight />
       <WhyNext />

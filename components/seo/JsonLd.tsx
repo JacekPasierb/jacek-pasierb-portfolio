@@ -20,6 +20,14 @@ export function JsonLd() {
     url: siteConfig.url,
     description: siteConfig.description,
     publisher: {"@id": `${siteConfig.url}#organization`},
+    potentialAction: {
+      "@type": "SearchAction",
+      target: {
+        "@type": "EntryPoint",
+        urlTemplate: `${siteConfig.url}/?q={search_term_string}`,
+      },
+      "query-input": "required name=search_term_string",
+    },
   };
 
   return (

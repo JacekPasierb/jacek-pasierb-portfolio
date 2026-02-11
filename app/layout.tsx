@@ -7,6 +7,7 @@ import {Footer} from "@/components/layout/Footer";
 import {PageTransition} from "@/components/ui/PageTransition";
 import {JsonLd} from "@/components/seo/JsonLd";
 import {ReducedMotionHandler} from "@/components/ui/ReducedMotionHandler";
+import {BackToTop} from "@/components/ui/BackToTop";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
@@ -52,7 +53,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="pl" className={fontSans.variable}>
+    <html lang="pl" className={fontSans.variable} data-scroll-behavior="smooth">
       <body>
         <ReducedMotionHandler />
         <JsonLd />
@@ -64,6 +65,7 @@ export default function RootLayout({
           <PageTransition>{children}</PageTransition>
         </main>
         <Footer />
+        <BackToTop />
       </body>
     </html>
   );

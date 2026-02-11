@@ -24,7 +24,7 @@ const items = [
 export function WhatYouGet() {
   return (
     <RevealSection id="co-dostajesz" className={styles.section}>
-      <AnimatedHeading className={styles.title}>Co dostajesz</AnimatedHeading>
+      <AnimatedHeading className={styles.title}>Co dostajesz ?</AnimatedHeading>
       <ul className={styles.list}>
         {items.map((item) => (
           <li key={item.title} className={styles.item}>
