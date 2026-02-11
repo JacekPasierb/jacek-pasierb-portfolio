@@ -9,8 +9,8 @@ export const siteConfig = {
     "Tworzę strony internetowe i aplikacje dla firm: wizytówki, sklepy, rezerwacje online, płatności. Szybko, bezpiecznie i z widocznością w Google.",
   tagline:
     "Strony, sklepy, rezerwacje online, płatności – wszystko szybkie i dobrze widoczne w Google.",
-  /** Adres strony (canonical, sitemap, robots, OG, JSON-LD) */
-  url: "https://pasierb-webstudio.netlify.app",
+  /** Domena canonical (sitemap, robots, OG, JSON-LD). Używaj jednej wersji (z lub bez www) i przekieruj drugą. */
+  url: "https://pasierb-webstudio.pl",
   keywords: [
     "strony Next.js",
     "tworzenie stron www",
