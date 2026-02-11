@@ -77,7 +77,7 @@ export function Hero() {
               textVisible ? styles.headlineVisible : styles.headlineInitial
             }
           >
-            Tworzę <span className={styles.keyword}>strony internetowe</span> i
+            Tworzę <span className={styles.keyword}>strony internetowe</span> <br/>i
             aplikacje dla firm
           </h1>
           <p
