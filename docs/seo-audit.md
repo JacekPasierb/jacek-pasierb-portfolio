@@ -11,7 +11,7 @@
 | Element | Status | Uwagi |
 |--------|--------|--------|
 | **robots.txt** | OK | `allow: /`, `disallow: /api/`, sitemap podany |
-| **sitemap.xml** | OK | Dynamiczny (strona główna, /portfolio, /kontakt, projekty) |
+| **sitemap.xml** | OK | Dynamiczny (strona główna, /portfolio, /uslugi, projekty; bez /kontakt – tylko #kontakt) |
 | **meta robots** | OK | Layout: `index, follow` |
 | **canonical** | OK | Layout + kontakt, portfolio, portfolio/[slug] – poprawne URL |
 | **noindex** | OK | Brak niepotrzebnego noindex |
@@ -28,17 +28,13 @@
 | Element | Status | Uwagi |
 |--------|--------|--------|
 | **Title / Meta description** | OK | Unikalne na kontakt, portfolio, [slug]. Strona główna z layout. |
-| **H1** | BŁĄD | **Portfolio:** główny nagłówek to H2 (AnimatedHeading domyślnie `as="h2"`). Powinien być jeden H1 na stronę. |
+| **H1** | OK | Portfolio: AnimatedHeading as="h1". Strona główna: Hero h1. |
 | **H2 / struktura** | OK | Hero H1, sekcje H2 (Dlaczego Next.js, Portfolio, FAQ itd.) |
-| **Alt obrazów** | BŁĄD | **Wszystkie obrazy mają `alt=""`:** WhyNext, PortfolioSection, ProjectCard, portfolio/[slug] – brak opisu dla LCP i a11y/SEO. |
-| **Linkowanie wewnętrzne** | Słabe | Nav: Start, Portfolio, Kontakt. Brak anchorów do sekcji na stronie głównej (np. #faq, #kontakt, #proces, #portfolio). |
+| **Alt obrazów** | OK | WhyNext, PortfolioSection, ProjectCard, portfolio/[slug] – opisowe alt (np. „Projekt: tytuł”). |
+| **Linkowanie wewnętrzne** | OK | Hero: linki do #dlaczego-nextjs, #proces, #faq; nav: /#kontakt. scroll-margin dla anchorów. |
 
-**P0:**  
-- Dodać H1 na stronie Portfolio.  
-- Uzupełnić **alt** przy wszystkich obrazach (opisowe, bez keyword stuffing).  
-
-**P1:**  
-- Linki wewnętrzne do sekcji (np. w CTA / stopce: „Masz pytania?” → #faq, „Kontakt” → #kontakt).  
+**P0:** – (wykonane).  
+**P1:** – (wykonane).  
 
 **P2:**  
 - Dłuższe, unikalne meta description dla strony głównej (obecnie OK, można testować wersje pod konwersję).
@@ -50,21 +46,15 @@
 | Schema | Status | Uwagi |
 |--------|--------|--------|
 | **Organization** | OK | JsonLd.tsx – name, url, description, @id |
-| **WebSite** | Częściowo | Brak `potentialAction` (SearchAction) – ogranicza rich results (sitelinks search box). |
-| **LocalBusiness / ProfessionalService** | Brak | Strona usługowa – warto dodać dla lokalnego SEO (np. usługi „strony Next.js”, region). |
-| **FAQPage** | Brak | Sekcja FAQ istnieje i ma realne Q&A – **brak schema FAQ** = stracona szansa na rozszerzone snippet w Google. |
-| **BreadcrumbList** | Brak | Przydatne na /portfolio i /portfolio/[slug]. |
+| **WebSite** | OK | SearchAction (potentialAction) w JsonLd.tsx. |
+| **ProfessionalService** | OK | JsonLd.tsx – nazwa, url, opis, email, telefon. |
+| **FAQPage** | OK | FaqJsonLd na stronie głównej i /uslugi/strony-nextjs. |
+| **BreadcrumbList** | OK | BreadcrumbJsonLd na /portfolio i /portfolio/[slug]. |
+| **CreativeWork** | OK | ProjectJsonLd na portfolio/[slug] – autor, opis, obraz. |
 
-**P0:**  
-- **FAQPage** – dodać JSON-LD dla istniejących pytań i odpowiedzi.  
-- **WebSite** – dodać `potentialAction` (SearchAction) z url wzorcem (np. wyszukiwarka po stronie lub placeholder pod przyszłą wyszukiwarkę).  
-
-**P1:**  
-- **BreadcrumbList** na /portfolio i /portfolio/[slug].  
-- **ProfessionalService** lub **LocalBusiness** (nazwa, url, opis, e-mail, telefon – bez wymyślania adresu).  
-
-**P2:**  
-- **Article** / **CreativeWork** na podstronach projektów (portfolio/[slug]) z author, datePublished.
+**P0:** – (wykonane).  
+**P1:** – (wykonane).  
+**P2:** – CreativeWork wdrożone.
 
 ---
 
@@ -73,16 +63,12 @@
 | Element | Status | Uwagi |
 |--------|--------|--------|
 | **OG title, description, url** | OK | Layout + strony podstron. |
-| **OG image** | BŁĄD | `siteConfig.ogImage` puste – udostępnienia w socialach bez obrazka. |
-| **Twitter card** | OK | summary_large_image; brak obrazka gdy ogImage puste. |
-| **Favicon / manifest** | Brak | Brak favicon.ico / app/icon w App Router; brak web manifest. |
+| **OG image** | OK | siteConfig.ogImage (np. /images/hero.png); dla produkcji można dodać dedykowany /og.png 1200×630. |
+| **Twitter card** | OK | summary_large_image + obraz. |
+| **Favicon / manifest** | OK | app/icon.tsx (generowany favicon), app/manifest.ts (PWA). |
 
-**P0:**  
-- **OG image:** ustawić domyślny obraz (np. `/images/og.png`) lub jasno udokumentować w `site.ts` / README, że trzeba dodać plik i ustawić `ogImage`.  
-
-**P1:**  
-- Dodać favicon (app/icon.tsx lub favicon.ico w app/).  
-- Dodać manifest (app/manifest.ts lub plik w public).  
+**P0:** – (wykonane).  
+**P1:** – (wykonane).  
 
 **P2:**  
 - Różne obrazy OG per podstrona (opcjonalnie).
@@ -94,9 +80,9 @@
 | Element | Status | Uwagi |
 |--------|--------|--------|
 | **next/image** | OK | Używane w WhyNext, PortfolioSection, ProjectCard, portfolio/[slug] – lazy, sizes. |
-| **Hero (LCP)** | Uwaga | Hero używa `background-image` w CSS (nie next/image) – brak automatycznej optymalizacji i preload; może wpływać na LCP. |
+| **Hero (LCP)** | Uwaga | Hero: background-image w CSS. Preload hero w layout (head) – poprawia LCP. Długoterminowo: next/image z priority. |
 | **Fonty** | OK | next/font (Plus Jakarta Sans), display: swap. |
-| **Preload / fetchPriority** | Brak | Brak preload dla hero image (LCP). |
+| **Preload** | OK | link rel=preload dla hero image w root layout. |
 | **Bundle** | OK | Brak oczywistych ciężkich importów; PageTransition, Reveal – rozsądne. |
 
 **P0:**  
@@ -203,3 +189,16 @@ Dla każdej podstrony: unikalny H1, 2–4 H2, Title ≤ 60 znaków, Meta descrip
 - **Treść** – regularne uzupełnianie (case studies, FAQ, blog) wzmacnia E-E-A-T i długi ogon.
 
 Nie gwarantuje się „1 miejsca”; audyt i wdrożenia zwiększają szanse na widoczność i konwersję przy zachowaniu dobrych praktyk Google.
+
+---
+
+## 9. WDROŻONE DZIAŁANIA POD TOP 1 (stan po wdrożeniu)
+
+| Obszar | Wdrożenie |
+|--------|-----------|
+| **Structured Data** | Organization, ProfessionalService, WebSite (+ SearchAction), FAQPage, BreadcrumbList (portfolio, [slug]), CreativeWork (projekt). |
+| **Techniczne** | Preload hero (LCP), favicon (app/icon.tsx), manifest (app/manifest.ts), canonical, sitemap, robots. |
+| **On-page** | H1 na wszystkich stronach, alt przy obrazach, linki wewnętrzne (#faq, #kontakt, #proces, #dlaczego-nextjs), scroll-margin dla anchorów. |
+| **Meta / OG** | Unikalne title i description, ogImage, Twitter card. |
+
+**Rekomendacje dalsze (poza kodem):** Google Search Console (weryfikacja, sitemap), budowa backlinków, treści (blog/case studies), polityka prywatności (RODO), regularna aktualizacja portfolio i FAQ.

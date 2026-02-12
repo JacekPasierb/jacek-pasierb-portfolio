@@ -23,7 +23,7 @@ export const siteConfig = {
   ogImage: "/images/hero.png" as string | undefined,
   /** Email i telefon do sekcji kontakt */
   contact: {
-    email: "jack_byk@o2.pl",
+    email: "kontakt@pasierb-webstudio.pl",
     phone: "724 862 714",
   },
   /**

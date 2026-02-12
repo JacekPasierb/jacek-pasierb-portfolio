@@ -3,11 +3,18 @@
 import {RevealSection} from "@/components/ui/RevealSection";
 import {AnimatedHeading} from "@/components/ui/AnimatedHeading";
 import {PortfolioTabs} from "@/components/portfolio/PortfolioTabs";
+import {BreadcrumbJsonLd} from "@/components/seo/BreadcrumbJsonLd";
 import styles from "./page.module.css";
+
+const portfolioBreadcrumbs = [
+  {name: "Strona główna", url: "/"},
+  {name: "Portfolio", url: "/portfolio"},
+];
 
 export default function PortfolioPage() {
   return (
     <>
+      <BreadcrumbJsonLd items={portfolioBreadcrumbs} />
       <div className={styles.wrapper}>
         <RevealSection className={styles.hero} id="portfolio-hero">
           <AnimatedHeading as="h1" className={styles.title}>

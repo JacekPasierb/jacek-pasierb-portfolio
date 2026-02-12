@@ -1,8 +1,8 @@
 import {siteConfig} from "@/data/site";
 
 /**
- * Schema.org: Organization + WebSite.
- * TODO: Rozszerz o LocalBusiness jeśli oferujesz usługi lokalnie (adres, godziny).
+ * Schema.org: Organization, ProfessionalService, WebSite.
+ * ProfessionalService – usługi (strony, aplikacje), dane kontaktowe dla lokalnego SEO.
  */
 export function JsonLd() {
   const organization = {
@@ -11,6 +11,17 @@ export function JsonLd() {
     name: siteConfig.siteName,
     url: siteConfig.url,
     description: siteConfig.description,
+  };
+
+  const professionalService = {
+    "@context": "https://schema.org",
+    "@type": "ProfessionalService",
+    "@id": `${siteConfig.url}#professionalservice`,
+    name: siteConfig.siteName,
+    url: siteConfig.url,
+    description: siteConfig.description,
+    email: siteConfig.contact.email,
+    telephone: siteConfig.contact.phone.replace(/\s/g, ""),
   };
 
   const website = {
@@ -40,6 +51,10 @@ export function JsonLd() {
             "@id": `${siteConfig.url}#organization`,
           }),
         }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{__html: JSON.stringify(professionalService)}}
       />
       <script
         type="application/ld+json"

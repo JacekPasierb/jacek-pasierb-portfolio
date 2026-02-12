@@ -2,6 +2,7 @@ import type {Metadata} from "next";
 import {Plus_Jakarta_Sans} from "next/font/google";
 import "./globals.css";
 import {siteConfig} from "@/data/site";
+import {siteImages} from "@/data/images";
 import {Header} from "@/components/layout/Header";
 import {Footer} from "@/components/layout/Footer";
 import {PageTransition} from "@/components/ui/PageTransition";
@@ -39,6 +40,8 @@ export const metadata: Metadata = {
     follow: true,
   },
   alternates: {canonical: siteConfig.url},
+  manifest: "/manifest.webmanifest",
+  icons: {icon: "/icon"},
 };
 
 const fontSans = Plus_Jakarta_Sans({
@@ -54,6 +57,14 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="pl" className={fontSans.variable} data-scroll-behavior="smooth">
+      <head>
+        <link
+          rel="preload"
+          href={siteImages.hero}
+          as="image"
+          fetchPriority="high"
+        />
+      </head>
       <body>
         <ReducedMotionHandler />
         <JsonLd />

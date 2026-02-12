@@ -8,6 +8,8 @@ import {
   type ProjectType,
 } from "@/data/portfolio";
 import {siteConfig} from "@/data/site";
+import {BreadcrumbJsonLd} from "@/components/seo/BreadcrumbJsonLd";
+import {ProjectJsonLd} from "@/components/seo/ProjectJsonLd";
 import styles from "./ProjectPage.module.css";
 
 const typeLabels: Record<ProjectType, string> = {
@@ -47,8 +49,17 @@ export default async function ProjectPage({params}: Props) {
   const project = getProjectBySlug(slug);
   if (!project) notFound();
 
+  const breadcrumbs = [
+    {name: "Strona główna", url: "/"},
+    {name: "Portfolio", url: "/portfolio"},
+    {name: project.title, url: `/portfolio/${project.slug}`},
+  ];
+
   return (
-    <article className={styles.article}>
+    <>
+      <BreadcrumbJsonLd items={breadcrumbs} />
+      <ProjectJsonLd project={project} />
+      <article className={styles.article}>
       <div className={styles.back}>
         <Link href="/portfolio">← Portfolio</Link>
       </div>
@@ -106,5 +117,6 @@ export default async function ProjectPage({params}: Props) {
         )}
       </div>
     </article>
+    </>
   );
 }
