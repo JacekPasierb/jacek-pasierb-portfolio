@@ -148,6 +148,20 @@
   }
 
   .list {
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
+    gap: var(--space-xs);
+    flex-shrink: 0;
+  }
+
+  .link,
+  .linkActive {
+    padding: var(--space-xs) var(--space-sm);
+    font-size: 0.8125rem;
+  }
+
+  .link::after,
+  .linkActive::after {
+    left: var(--space-sm);
+    right: var(--space-sm);
   }
 }
