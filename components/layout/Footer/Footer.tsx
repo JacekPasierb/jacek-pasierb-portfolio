@@ -7,8 +7,9 @@ import {siteConfig} from "@/data/site";
 
 const footerLinks = [
   {href: "/", label: "Start"},
+  {href: "/uslugi", label: "Usługi"},
   {href: "/portfolio", label: "Portfolio"},
-  {href: "/kontakt", label: "Kontakt"},
+  {href: "/#kontakt", label: "Kontakt"},
 ];
 
 export function Footer() {
@@ -30,9 +31,17 @@ export function Footer() {
                   <Link
                     href={href}
                     className={
-                      pathname === href ? styles.linkActive : styles.link
+                      pathname === href ||
+                      (href !== "/" && pathname.startsWith(href + "/"))
+                        ? styles.linkActive
+                        : styles.link
                     }
-                    aria-current={pathname === href ? "page" : undefined}
+                    aria-current={
+                      pathname === href ||
+                      (href !== "/" && pathname.startsWith(href + "/"))
+                        ? "page"
+                        : undefined
+                    }
                   >
                     {label}
                   </Link>

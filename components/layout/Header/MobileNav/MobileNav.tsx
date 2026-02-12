@@ -8,7 +8,8 @@ import {useReducedMotion} from "@/hooks/useReducedMotion";
 import styles from "./MobileNav.module.css";
 
 const RADIUS_REM = 7;
-const ORBIT_ANGLES_DEG = [140, 180, 220];
+/* Równomiernie co 90°: prawy, dół, lewy, góra */
+const ORBIT_ANGLES_DEG = [100, 160, 200, 260];
 
 function getOrbitPosition(index: number) {
   const angle = ORBIT_ANGLES_DEG[index] ?? 180;

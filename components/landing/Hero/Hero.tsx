@@ -77,8 +77,8 @@ export function Hero() {
               textVisible ? styles.headlineVisible : styles.headlineInitial
             }
           >
-            Tworzę <span className={styles.keyword}>strony internetowe</span> <br/>i
-            aplikacje dla firm
+            Tworzę <span className={styles.keyword}>strony internetowe</span>{" "}
+            <br />i aplikacje dla firm
           </h1>
           <p
             className={
@@ -90,7 +90,7 @@ export function Hero() {
             {siteConfig.tagline}
           </p>
           <div className={textVisible ? styles.ctaVisible : styles.ctaInitial}>
-            <MagneticButton href="/kontakt" glow>
+            <MagneticButton href="/#kontakt" glow>
               Porozmawiajmy o Twojej stronie
             </MagneticButton>
             <Link href="/portfolio" className={styles.secondary}>

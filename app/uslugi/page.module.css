@@ -1,4 +1,4 @@
-/* Tło jak w Hero (overlay + shimmer), na całą szerokość viewportu */
+/* Spójne z layoutem strony: kontener, typografia, karty jak ContactSection / PortfolioSection */
 .wrapper {
   position: relative;
   max-width: var(--container-max);
@@ -70,75 +70,86 @@
   max-width: var(--content-max-width);
 }
 
-/* Karta w stylu ContactSection / WhyNext */
-.details {
-  max-width: 28rem;
-  margin: 0 auto;
-  padding: var(--space-2xl);
+.section {
+  padding: var(--space-2xl) 0 0;
+}
+
+.sectionTitle {
+  font-size: clamp(1.5rem, 4vw, 2rem);
+  margin: 0 0 var(--space-md);
+  text-align: center;
+}
+
+.sectionIntro {
+  text-align: center;
+  color: var(--color-text-muted);
+  opacity: var(--text-muted-opacity);
+  font-size: var(--text-small);
+  line-height: var(--leading-body);
+  margin: 0 auto var(--space-2xl);
+  max-width: var(--content-max-width);
+}
+
+.grid {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: var(--space-xl);
+  align-items: stretch;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  min-height: 0;
+  padding: var(--space-xl);
   background: var(--color-surface);
   border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: var(--radius-lg);
+  text-decoration: none;
+  color: inherit;
   transition: border-color var(--transition-base),
-    box-shadow var(--transition-base);
+    background var(--transition-base), transform var(--transition-base);
 }
 
-.details:hover {
-  border-color: rgba(59, 130, 246, 0.2);
-  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.2);
+.card:hover {
+  border-color: rgba(59, 130, 246, 0.35);
+  background: rgba(59, 130, 246, 0.06);
+  text-decoration: none;
+  color: inherit;
+  transform: translateY(-2px);
 }
 
-.detailsTitle {
+.card:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+.cardTitle {
   font-size: var(--text-h3);
   font-weight: var(--font-weight-semibold);
-  letter-spacing: var(--tracking-tight-section);
-  margin: 0 0 var(--space-lg);
+  margin: 0 0 var(--space-sm);
   color: var(--color-text);
 }
 
-.details p {
-  margin: 0 0 var(--space-lg);
+.cardDesc {
+  margin: 0 0 var(--space-md);
   font-size: var(--text-small);
   line-height: var(--leading-body);
   color: var(--color-text-muted);
+  flex: 1;
 }
 
-.details p:last-child {
-  margin-bottom: 0;
-}
-
-.details strong {
-  display: block;
-  font-size: var(--text-label);
-  font-weight: var(--font-weight-semibold);
-  text-transform: uppercase;
-  letter-spacing: var(--tracking-wide-labels);
-  color: var(--color-text-muted);
-  margin-bottom: var(--space-xs);
-}
-
-.details a {
-  color: var(--color-accent);
+.cardCta {
+  font-size: var(--text-small);
   font-weight: var(--font-weight-medium);
-  transition: color var(--transition-fast);
+  color: var(--color-accent);
+  margin-top: auto;
 }
 
-.details a:hover {
+.card:hover .cardCta {
   color: var(--color-accent-hover);
-  text-decoration: none;
-}
-
-.details a:focus-visible {
-  outline: 2px solid var(--color-accent);
-  outline-offset: 2px;
-  border-radius: var(--radius-sm);
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .details {
-    transition: none;
-  }
-  .details:hover {
-    border-color: rgba(255, 255, 255, 0.08);
-    box-shadow: none;
-  }
 }

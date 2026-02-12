@@ -102,7 +102,8 @@ html {
 [id="kontakt"],
 [id="portfolio"],
 [id="co-dostajesz"],
-[id="rezultaty"] {
+[id="rezultaty"],
+[id="oferta"] {
   scroll-margin-top: 5rem;
 }
 
@@ -113,7 +114,8 @@ html {
   [id="kontakt"],
   [id="portfolio"],
   [id="co-dostajesz"],
-  [id="rezultaty"] {
+  [id="rezultaty"],
+  [id="oferta"] {
     scroll-margin-top: 6rem;
   }
 }

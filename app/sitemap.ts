@@ -13,7 +13,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const staticRoutes: MetadataRoute.Sitemap = [
     {url: base, changeFrequency: "monthly", priority: 1},
     {url: `${base}/portfolio`, changeFrequency: "weekly", priority: 0.9},
-    {url: `${base}/kontakt`, changeFrequency: "monthly", priority: 0.8},
+    {url: `${base}/uslugi`, changeFrequency: "monthly", priority: 0.85},
+    {
+      url: `${base}/uslugi/strony-nextjs`,
+      changeFrequency: "monthly",
+      priority: 0.8,
+    },
   ];
 
   const portfolioRoutes: MetadataRoute.Sitemap = portfolioProjects.map((p) => ({
