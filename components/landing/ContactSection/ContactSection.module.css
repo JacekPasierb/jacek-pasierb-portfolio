@@ -41,7 +41,7 @@
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
   gap: var(--space-lg);
-  max-width: 38rem;
+  max-width: 40rem;
   margin: 0 auto;
 }
 
