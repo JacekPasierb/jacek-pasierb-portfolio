@@ -136,14 +136,31 @@
   letter-spacing: var(--tracking-description, 0.01em);
 }
 
-.social a {
-  color: #7aa2ff;
-  text-decoration: none;
-  font-weight: 500;
+.social {
+  margin-top: var(--space-md);
 }
 
-.social a:hover {
-  text-decoration: underline;
+.socialLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+
+  color: var(--color-accent);
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 500;
+
+  transition: opacity var(--transition-base),
+              transform var(--transition-base);
+}
+
+.socialLink:hover {
+  opacity: 0.85;
+  transform: translateY(-1px);
+}
+
+.socialLink svg {
+  flex-shrink: 0;
 }
 
 
