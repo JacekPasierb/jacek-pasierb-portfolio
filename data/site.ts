@@ -24,7 +24,7 @@ export const siteConfig = {
   /** Email i telefon do sekcji kontakt */
   contact: {
     email: "kontakt@pasierb-webstudio.pl",
-    phone: "724 862 714",
+    phone: "+48 724 862 714",
     facebook: "https://www.facebook.com/PasierbWebStudio/",
   },
   /**
