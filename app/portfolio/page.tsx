@@ -5,6 +5,8 @@ import {AnimatedHeading} from "@/components/ui/AnimatedHeading";
 import {PortfolioTabs} from "@/components/portfolio/PortfolioTabs";
 import {BreadcrumbJsonLd} from "@/components/seo/BreadcrumbJsonLd";
 import styles from "./page.module.css";
+import { SectionDivider } from "../../components/ui/SectionDivider";
+import { ContactSection } from "../../components/landing/ContactSection";
 
 const portfolioBreadcrumbs = [
   {name: "Strona główna", url: "/"},
@@ -34,6 +36,8 @@ export default function PortfolioPage() {
       >
         <PortfolioTabs subtitle="Wybierz kategorię, aby zobaczyć projekty." />
       </RevealSection>
+      <SectionDivider variant="glow" intensity="normal" withEdgeHighlight />
+      <ContactSection />
     </>
   );
 }

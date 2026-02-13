@@ -49,6 +49,16 @@ export function Footer() {
               ))}
             </ul>
           </nav>
+          <div className={styles.social}>
+            <a
+              href={siteConfig.contact.facebook}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Facebook"
+            >
+              Facebook
+            </a>
+          </div>
         </div>
         <div className={styles.divider} aria-hidden />
         <p className={styles.copyright}>

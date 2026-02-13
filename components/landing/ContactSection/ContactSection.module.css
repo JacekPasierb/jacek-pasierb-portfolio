@@ -39,11 +39,12 @@
 
 .grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  grid-template-columns: repeat(3, 1fr); /* Desktop: 3 w rzędzie */
   gap: var(--space-lg);
-  max-width: 42rem;
+  max-width: 48rem;
   margin: 0 auto;
 }
+
 
 .card {
   display: flex;
@@ -100,9 +101,22 @@
   font-size: 1rem;
   font-weight: 500;
   color: var(--color-text);
-  word-break: break-all;
+
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+
+  max-width: 100%;
 }
+
 
 .card:hover .value {
   color: var(--color-accent);
 }
+
+@media (max-width: 768px) {
+  .grid {
+    grid-template-columns: 1fr; /* Mobile: 1 kolumna */
+  }
+}
+

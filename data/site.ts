@@ -25,6 +25,7 @@ export const siteConfig = {
   contact: {
     email: "kontakt@pasierb-webstudio.pl",
     phone: "724 862 714",
+    facebook: "https://www.facebook.com/PasierbWebStudio/",
   },
   /**
    * Przykłady realizacji (karty w sekcji „Przykłady”).
