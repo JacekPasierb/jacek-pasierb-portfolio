@@ -61,6 +61,18 @@ export function StickyProcess({title, intro, steps}: StickyProcessProps) {
           ))}
         </div>
       </div>
+      <div className={styles.cta}>
+        <a
+          className={styles.ctaBtn}
+          href="mailto:kontakt@pasierb-webstudio.pl?subject=Wycena%20strony%20internetowej&body=Dzień%20dobry,%0A%0AChcę%20wycenić%20stronę%20internetową.%0A%0ABranża:%0AZakres%20strony:%0ATermin%20realizacji:%0ABudżet%20(opcjonalnie):%0A%0APozdrawiam"
+        >
+          Wyślij e-mail
+        </a>
+
+        <p className={styles.ctaHint}>
+          Otworzy się Twój program pocztowy • kontakt@pasierb-webstudio.pl
+        </p>
+      </div>
     </section>
   );
 }

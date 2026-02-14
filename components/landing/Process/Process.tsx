@@ -4,41 +4,42 @@ import {StickyProcess} from "@/components/ui/StickyProcess";
 const processSteps = [
   {
     id: "krok-1",
-    title: "Rozmowa i ustalenia",
+    title: "Krótka rozmowa",
     description:
-      "Ustalamy, czego potrzebujesz: strona wizytówka, sklep, rezerwacje, płatności online? Dla kogo jest strona i co ma osiągać. Ustalamy harmonogram i formę współpracy.",
+      "Rozmawiamy o Twojej firmie, ofercie i celu strony. Ustalamy zakres, budżet i termin realizacji.",
   },
   {
     id: "krok-2",
-    title: "Projekt i treści",
+    title: "Struktura i plan strony",
     description:
-      "Przygotowuję propozycję struktury i układu strony. Ty dostarczasz teksty i zdjęcia – albo wspólnie je dopracowujemy.",
+      "Proponuję układ strony i podział treści. Doradzam, co warto pokazać, aby zwiększyć liczbę zapytań od klientów.",
   },
   {
     id: "krok-3",
-    title: "Realizacja",
+    title: "Projekt i realizacja",
     description:
-      "Buduję stronę lub aplikację od zera: wygląd, działanie, formularze, płatności lub rezerwacje – w zależności od ustaleń.",
+      "Tworzę nowoczesną, szybką stronę dopasowaną do Twojej branży – responsywną i przygotowaną pod Google.",
   },
   {
     id: "krok-4",
-    title: "Widoczność w Google i szybkość",
+    title: "Optymalizacja i testy",
     description:
-      "Dbam o to, żeby strona była szybka i dobrze widoczna w wyszukiwarce. Dopasowuję wszystko pod Twoje słowa kluczowe.",
+      "Sprawdzam działanie na telefonach i komputerach. Dbam o szybkość, bezpieczeństwo i poprawne wyświetlanie.",
   },
   {
     id: "krok-5",
-    title: "Testy i uruchomienie",
+    title: "Uruchomienie strony",
     description:
-      "Sprawdzam działanie na różnych urządzeniach, wprowadzamy ewentualne poprawki. Uruchamiam stronę u wybranego dostawcy hostingu.",
+      "Publikuję stronę na serwerze i konfiguruję domenę. Wszystko jest gotowe do działania.",
   },
   {
     id: "krok-6",
-    title: "Przekazanie i wsparcie",
+    title: "Wsparcie po wdrożeniu",
     description:
-      "Przekazuję Ci dostęp do strony i dokumentację. Mogę zapewnić krótki okres wsparcia po uruchomieniu lub dalsze rozbudowy.",
+      "Po uruchomieniu możesz liczyć na moje wsparcie – w razie pytań, drobnych zmian lub rozbudowy.",
   },
 ];
+
 
 export function Process() {
   return (

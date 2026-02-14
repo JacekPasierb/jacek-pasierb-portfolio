@@ -91,7 +91,7 @@ export function Hero() {
           </p>
           <div className={textVisible ? styles.ctaVisible : styles.ctaInitial}>
             <MagneticButton href="/#kontakt" glow>
-              Porozmawiajmy o Twojej stronie
+              Darmowa wycena
             </MagneticButton>
             <Link href="/portfolio" className={styles.secondary}>
               Zobacz, co mogę dla Ciebie zrobić

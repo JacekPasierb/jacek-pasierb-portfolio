@@ -40,8 +40,7 @@
   }
 
   .stickyCol {
-    position: static;
-    order: -1;
+    display: none;
   }
 
   .stickyInner {
@@ -58,11 +57,6 @@
 
   .cardDesc {
     opacity: 1;
-  }
-
-  /* Pierwsza karta (Rozmowa i ustalenia) jest już w bloku podsumowania u góry – ukrywamy, żeby nie dublować */
-  .scrollCol .card:first-child {
-    display: none;
   }
 }
 
@@ -135,4 +129,41 @@
   /* opacity: var(--text-muted-opacity); */
   font-size: var(--text-small);
   line-height: var(--leading-body);
+}
+
+
+.cta {
+  margin-top: var(--space-2xl);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-sm);
+  text-align: center;
+}
+
+.ctaBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.9rem 1.2rem;
+  border-radius: var(--radius-lg);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(59, 130, 246, 0.12);
+  text-decoration: none;
+  font-weight: var(--font-weight-semibold);
+  transition: transform var(--transition-base), background var(--transition-base),
+    border-color var(--transition-base);
+}
+
+.ctaBtn:hover {
+  transform: translateY(-1px);
+  border-color: rgba(59, 130, 246, 0.4);
+  background: rgba(59, 130, 246, 0.18);
+}
+
+.ctaHint {
+  margin: 0;
+  color: var(--color-text-muted);
+  opacity: var(--text-muted-opacity);
+  font-size: var(--text-small);
 }
